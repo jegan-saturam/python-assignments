@@ -41,7 +41,7 @@ def registration():
 		elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
 			message = 'Invalid email address !'
 			return redirect(url_for('failed',message = message))
-		elif not re.match(r'[A-Za-z0-9]+', username):
+		elif not re.fullmatch(r'[A-Za-z0-9]+', username):
 			message = 'Username must contain only characters and numbers !'
 			return redirect(url_for('failed',message = message))
 		else:
