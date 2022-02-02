@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>QT-calculator</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <div id="updation-page">
+      <h1>User Updation</h1>
+      <p>Please enter details to Update:</p>
+ 
+      <form action="http://localhost:5000/update" method="post">
+        <br>
+        <label>Enter Username:</label>
+        <input type="text" name="username">
+        <br><br>
+        <label>Enter Password</label>
+        <input type="text" name="password">
+        <br><br>
+        <label>Enter Email</label>
+        <input type="text" name="email">
+        </br><br>
+        <input type="submit" name="next" value="Next">
+     </form>
+     <br><br>
+     <h1>{{ result }}</h1>
+   </div>
+ </body>
+</html>
