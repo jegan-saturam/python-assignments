@@ -1,0 +1,63 @@
+<html>
+	<head>
+		<script
+			  src="https://code.jquery.com/jquery-3.2.1.js"
+			  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+			  crossorigin="anonymous">
+		</script>
+		<script type="text/javascript">
+			var server = "http://127.0.0.1:5000";
+			var user_details = {"updation":["jegan","1011","jegan@gmail.com"]};
+			function update_user()
+			{
+				var username = $('#username').val();
+				var password = $('#password').val();
+				var email = $('#email').val();
+				user_details["updation"]=[username,password,email];
+				
+			}
+			$( function() {
+				$( "#update" ).click(function() {
+					var appdir='/update';
+					var send_msg = "<p>Sending details</p>";
+					var received_msg = "<p>Result returned</p>";
+					update_user();
+					console.log(send_msg);
+					$('#message').html(send_msg);
+					$.ajax({
+  						type: "POST",
+  						url:server+appdir,
+  						data: JSON.stringify(user_details),
+  						dataType: 'json'
+					}).done(function(data) { 
+						console.log(data);
+						$('#result').html(data['result']);
+						$('#message').html(received_msg+data['msg']);
+					});
+				});
+  			});
+
+		</script>
+	</head>
+	<body>
+		<div>
+			<div>
+				<label for="username">Username:</label>
+  				<input type="text" id="username" name="username"><br><br>
+  				<label for="password">Password:</label>
+  				<input type="password" id="password" name="password"><br><br>
+				<label for="email">Email:</label>
+  				<input type="email" id="email" name="email"><br><br>
+	
+			</div>
+			<div id="update" style="background-color:gray; width:100px; color:white;">
+				Click to Update Users
+			</div><br><br>
+			<div id="result">
+				Updated Data will appear here
+			</div>
+			<div id="message">
+			</div>
+		</div>
+	</body>
+</html>
